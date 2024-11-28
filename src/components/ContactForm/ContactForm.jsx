@@ -3,6 +3,7 @@ import { Component } from 'react';
 export class ContactForm extends Component {
   state = {
     name: '',
+    number: '',
   };
 
   handleChange = ({ target }) => {
@@ -15,10 +16,12 @@ export class ContactForm extends Component {
     e.preventDefault();
     this.props.addContact({
       name: this.state.name,
+      number: this.state.number,
     });
 
     this.setState({
       name: '',
+      number: '',
     });
   };
 
@@ -34,6 +37,16 @@ export class ContactForm extends Component {
           required
           onChange={this.handleChange}
           value={this.state.name}
+        />
+        <label>Number</label>
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          onChange={this.handleChange}
+          value={this.state.number}
         />
 
         <button type="submit">Add contact</button>
