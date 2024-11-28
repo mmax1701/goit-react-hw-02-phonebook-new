@@ -4,7 +4,9 @@ export class ContactList extends Component {
   render() {
     return (
       <ul>
-        <li></li>
+        {this.props.contacts.map(contact => (
+          <li key={contact.id}>{contact.name}</li>
+        ))}
       </ul>
     );
   }
